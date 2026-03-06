@@ -52,7 +52,7 @@ jobs:
       - name: 📦 Prepare artifacts
         run: |
           mkdir -p artifacts
-          cp build/web/ artifacts/
+          cp build/web/* artifacts/
             
   deploy:
     needs: build
