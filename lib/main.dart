@@ -59,7 +59,8 @@ class _ImeiHomePageState extends State<ImeiHomePage> {
   String _imei = "";
 
   void _generateImei() {
-    final newImei = ImeiGenerator.generateImei();
+    try {
+      final newImei = ImeiGenerator.generateImei();
 
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -70,6 +71,10 @@ class _ImeiHomePageState extends State<ImeiHomePage> {
       
       _imei = newImei;
     });
+    } catch (ex) {
+      _imei = ex.toString();
+    }
+    
   }
 
   Future<void> _copyImei() async {
@@ -115,7 +120,7 @@ class _ImeiHomePageState extends State<ImeiHomePage> {
           children: [
             const Text('IMEI :'),
             Text(
-              '$_imei',
+              '${_imei}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 20,),
